@@ -54,8 +54,8 @@ class Habilidad(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     usuario_id = Column(Integer, ForeignKey('usuarios.id'))
     nombre = Column(String(50), nullable=False)
-    nivel = Column(Enum('Básico', 'Intermedio', 'Avanzado', 'Experto'), nullable=False)
-    tipo = Column(Enum('Técnica', 'Blanda'), nullable=False)
+    nivel = Column(Enum('Basico', 'Intermedio', 'Avanzado', 'Experto'), nullable=False)
+    tipo = Column(Enum('Tecnica', 'Blanda'), nullable=False)
     
     usuario = relationship("Usuario", back_populates="habilidades")
 
@@ -68,3 +68,5 @@ DB_NAME = os.getenv('DB_NAME', 'cv_generator')
 DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 
 engine = create_engine(DATABASE_URL, echo=False)
+
+

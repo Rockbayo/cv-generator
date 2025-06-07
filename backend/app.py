@@ -437,6 +437,236 @@ def eliminar_educacion(educacion_id):
     finally:
         if session:
             session.close()
+# =============== HABILIDADES ===============
+@app.route('/api/usuario/<int:usuario_id>/habilidades', methods=['GET'])
+def listar_habilidades(usuario_id):
+    session = None
+    try:
+        session = SessionLocal()
+        habilidades = session.query(Habilidad).filter(Habilidad.usuario_id == usuario_id).all()
+        
+        habilidades_list = []
+        for hab in habilidades:
+            habilidades_list.append({
+                'id': hab.id,
+                'nombre': hab.nombre,
+                'nivel': hab.nivel,
+                'tipo': hab.tipo
+            })
+        
+        return jsonify({
+            'status': 'success',
+            'habilidades': habilidades_list
+        })
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    finally:
+        if session:
+            session.close()
+
+@app.route('/api/usuario/<int:usuario_id>/habilidades', methods=['POST'])
+def crear_habilidad(usuario_id):
+    session = None
+    try:
+        data = request.json
+        session = SessionLocal()
+        
+        usuario = session.query(Usuario).filter(Usuario.id == usuario_id).first()
+        if not usuario:
+            return jsonify({'status': 'error', 'message': 'Usuario no encontrado'}), 404
+        
+        nueva_habilidad = Habilidad(
+            usuario_id=usuario_id,
+            nombre=data['nombre'],
+            nivel=data['nivel'],
+            tipo=data['tipo']
+        )
+        
+        session.add(nueva_habilidad)
+        session.commit()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Habilidad creada exitosamente',
+            'habilidad_id': nueva_habilidad.id
+        })
+    except Exception as e:
+        if session:
+            session.rollback()
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    finally:
+        if session:
+            session.close()
+
+@app.route('/api/habilidad/<int:habilidad_id>', methods=['PUT'])
+def actualizar_habilidad(habilidad_id):
+    session = None
+    try:
+        data = request.json
+        session = SessionLocal()
+        
+        habilidad = session.query(Habilidad).filter(Habilidad.id == habilidad_id).first()
+        if not habilidad:
+            return jsonify({'status': 'error', 'message': 'Habilidad no encontrada'}), 404
+        
+        habilidad.nombre = data.get('nombre', habilidad.nombre)
+        habilidad.nivel = data.get('nivel', habilidad.nivel)
+        habilidad.tipo = data.get('tipo', habilidad.tipo)
+        
+        session.commit()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Habilidad actualizada exitosamente'
+        })
+    except Exception as e:
+        if session:
+            session.rollback()
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    finally:
+        if session:
+            session.close()
+
+@app.route('/api/habilidad/<int:habilidad_id>', methods=['DELETE'])
+def eliminar_habilidad(habilidad_id):
+    session = None
+    try:
+        session = SessionLocal()
+        
+        habilidad = session.query(Habilidad).filter(Habilidad.id == habilidad_id).first()
+        if not habilidad:
+            return jsonify({'status': 'error', 'message': 'Habilidad no encontrada'}), 404
+        
+        session.delete(habilidad)
+        session.commit()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Habilidad eliminada exitosamente'
+        })
+    except Exception as e:
+        if session:
+            session.rollback()
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    finally:
+        if session:
+            session.close()
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+# =============== HABILIDADES ===============
+@app.route('/api/usuario/<int:usuario_id>/habilidades', methods=['GET'])
+def listar_habilidades(usuario_id):
+    session = None
+    try:
+        session = SessionLocal()
+        habilidades = session.query(Habilidad).filter(Habilidad.usuario_id == usuario_id).all()
+        
+        habilidades_list = []
+        for hab in habilidades:
+            habilidades_list.append({
+                'id': hab.id,
+                'nombre': hab.nombre,
+                'nivel': hab.nivel,
+                'tipo': hab.tipo
+            })
+        
+        return jsonify({
+            'status': 'success',
+            'habilidades': habilidades_list
+        })
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    finally:
+        if session:
+            session.close()
+
+@app.route('/api/usuario/<int:usuario_id>/habilidades', methods=['POST'])
+def crear_habilidad(usuario_id):
+    session = None
+    try:
+        data = request.json
+        session = SessionLocal()
+        
+        usuario = session.query(Usuario).filter(Usuario.id == usuario_id).first()
+        if not usuario:
+            return jsonify({'status': 'error', 'message': 'Usuario no encontrado'}), 404
+        
+        nueva_habilidad = Habilidad(
+            usuario_id=usuario_id,
+            nombre=data['nombre'],
+            nivel=data['nivel'],
+            tipo=data['tipo']
+        )
+        
+        session.add(nueva_habilidad)
+        session.commit()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Habilidad creada exitosamente',
+            'habilidad_id': nueva_habilidad.id
+        })
+    except Exception as e:
+        if session:
+            session.rollback()
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    finally:
+        if session:
+            session.close()
+
+@app.route('/api/habilidad/<int:habilidad_id>', methods=['PUT'])
+def actualizar_habilidad(habilidad_id):
+    session = None
+    try:
+        data = request.json
+        session = SessionLocal()
+        
+        habilidad = session.query(Habilidad).filter(Habilidad.id == habilidad_id).first()
+        if not habilidad:
+            return jsonify({'status': 'error', 'message': 'Habilidad no encontrada'}), 404
+        
+        habilidad.nombre = data.get('nombre', habilidad.nombre)
+        habilidad.nivel = data.get('nivel', habilidad.nivel)
+        habilidad.tipo = data.get('tipo', habilidad.tipo)
+        
+        session.commit()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Habilidad actualizada exitosamente'
+        })
+    except Exception as e:
+        if session:
+            session.rollback()
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    finally:
+        if session:
+            session.close()
+
+@app.route('/api/habilidad/<int:habilidad_id>', methods=['DELETE'])
+def eliminar_habilidad(habilidad_id):
+    session = None
+    try:
+        session = SessionLocal()
+        
+        habilidad = session.query(Habilidad).filter(Habilidad.id == habilidad_id).first()
+        if not habilidad:
+            return jsonify({'status': 'error', 'message': 'Habilidad no encontrada'}), 404
+        
+        session.delete(habilidad)
+        session.commit()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Habilidad eliminada exitosamente'
+        })
+    except Exception as e:
+        if session:
+            session.rollback()
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    finally:
+        if session:
+            session.close()
+
+

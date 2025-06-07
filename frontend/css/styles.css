@@ -564,3 +564,216 @@ main {
         justify-content: flex-start;
     }
 }
+/* =============================================
+   ESTILOS PARA HABILIDADES (FASE 4)
+   ============================================= */
+
+/* Sección de habilidades */
+.skills-section {
+    margin-top: 20px;
+}
+
+.skills-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 2px solid #dee2e6;
+}
+
+.skills-form h3 {
+    color: #495057;
+    margin-bottom: 15px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 8px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+    width: auto;
+    margin: 0;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.skill-item {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 15px;
+    transition: box-shadow 0.2s ease;
+}
+
+.skill-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.skill-info h4 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.skill-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.skill-type {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.skill-type.tecnica {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.skill-type.blanda {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.skill-level {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.skill-level.basico {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.skill-level.intermedio {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.skill-level.avanzado {
+    background: #d4edda;
+    color: #155724;
+}
+
+.skill-level.experto {
+    background: #e6ccff;
+    color: #4a154b;
+}
+
+.skill-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.skill-progress {
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.progress-fill.basico {
+    width: 25%;
+    background: linear-gradient(90deg, #FF9800, #FFB74D);
+}
+
+.progress-fill.intermedio {
+    width: 50%;
+    background: linear-gradient(90deg, #2196F3, #42A5F5);
+}
+
+.progress-fill.avanzado {
+    width: 75%;
+    background: linear-gradient(90deg, #4CAF50, #66BB6A);
+}
+
+.progress-fill.experto {
+    width: 100%;
+    background: linear-gradient(90deg, #9C27B0, #BA68C8);
+}
+
+/* Vista previa en CV */
+.cv-skills-section {
+    margin-bottom: 20px;
+}
+
+.cv-skills-section h3 {
+    color: #34495e;
+    border-bottom: 1px solid #bdc3c7;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.cv-skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cv-skill-tag {
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #495057;
+    border: 1px solid #dee2e6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

@@ -63,7 +63,7 @@
                     <div class="nav-buttons">
                         <button type="button" class="btn-nav active" id="experiencesNavBtn">Experiencia</button>
                         <button type="button" class="btn-nav" id="educationNavBtn">Educacion</button>
-                        <button type="button" class="btn-nav disabled" id="skillsNavBtn">Habilidades</button>
+                        <button type="button" class="btn-nav" id="skillsNavBtn">Habilidades</button>
                     </div>
                 </div>
                 
@@ -174,6 +174,55 @@
                         </div>
                         <div id="educationList" class="education-container">
                             <p class="no-data">No hay educacion registrada</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seccion de Habilidades -->
+                <div class="skills-section section-content" id="skillsSection" style="display:none;">
+                    <h2> Habilidades y Competencias</h2>
+                    
+                    <div class="skills-form" id="skillsForm" style="display:none;">
+                        <h3 id="skillsFormTitle">Nueva Habilidad</h3>
+                        <form id="skillForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nombreHabilidad">Nombre de la Habilidad:</label>
+                                    <input type="text" id="nombreHabilidad" required placeholder="Ej: JavaScript, Comunicacion...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nivelHabilidad">Nivel:</label>
+                                    <select id="nivelHabilidad" required>
+                                        <option value="Basico">Basico</option>
+                                        <option value="Intermedio">Intermedio</option>
+                                        <option value="Avanzado">Avanzado</option>
+                                        <option value="Experto">Experto</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Tipo de Habilidad:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="tipoHabilidad" value="Tecnica" checked> Tecnica</label>
+                                    <label><input type="radio" name="tipoHabilidad" value="Blanda"> Blanda</label>
+                                </div>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button type="submit" class="btn-primary" id="saveSkillBtn">Guardar Habilidad</button>
+                                <button type="button" class="btn-secondary" id="cancelSkillBtn">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="skills-list">
+                        <div class="list-header">
+                            <h3>Habilidades Registradas</h3>
+                            <button type="button" class="btn-success" id="addSkillBtn">Agregar Habilidad</button>
+                        </div>
+                        <div id="skillsList" class="skills-container">
+                            <p class="no-data">No hay habilidades registradas</p>
                         </div>
                     </div>
                 </div>

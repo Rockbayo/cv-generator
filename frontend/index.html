@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de CV</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Generador de CV Profesional</h1>
+        </header>
+        
+        <main>
+            <div class="form-section">
+                <div class="cv-selector">
+                    <h3>CVs Existentes</h3>
+                    <select id="cvSelector">
+                        <option value="">Crear nuevo CV...</option>
+                    </select>
+                    <button type="button" class="btn-secondary" id="loadCvBtn">Cargar CV</button>
+                </div>
+                
+                <h2>Datos Personales</h2>
+                <form id="cvForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo:</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefono">Telefono:</label>
+                        <input type="tel" id="telefono">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="direccion">Direccion:</label>
+                        <input type="text" id="direccion">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resumen">Resumen Profesional:</label>
+                        <textarea id="resumen" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" class="btn-primary" id="saveBtn">Guardar Datos</button>
+                        <button type="button" class="btn-secondary" id="editBtn" style="display:none;">Editar</button>
+                        <button type="button" class="btn-danger" id="deleteBtn" style="display:none;">Eliminar</button>
+                        <button type="button" class="btn-success" id="newBtn" style="display:none;">Nuevo CV</button>
+                    </div>
+                </form>
+                
+                <!-- Navegacion entre secciones -->
+                <div class="sections-nav" id="sectionsNav" style="display:none;">
+                    <h2>Secciones del CV</h2>
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-nav active" id="experiencesNavBtn">Experiencia</button>
+                        <button type="button" class="btn-nav" id="educationNavBtn">Educacion</button>
+                        <button type="button" class="btn-nav disabled" id="skillsNavBtn">Habilidades</button>
+                    </div>
+                </div>
+                
+                <!-- Seccion de Experiencias -->
+                <div class="experiences-section section-content" id="experiencesSection" style="display:none;">
+                    <h2>Experiencia Laboral</h2>
+                    
+                    <div class="experience-form" id="experienceForm" style="display:none;">
+                        <h3 id="experienceFormTitle">Nueva Experiencia</h3>
+                        <form id="expForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="empresa">Empresa:</label>
+                                    <input type="text" id="empresa" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="cargo">Cargo:</label>
+                                    <input type="text" id="cargo" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fechaInicio">Fecha Inicio:</label>
+                                    <input type="date" id="fechaInicio">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="fechaFin">Fecha Fin:</label>
+                                    <input type="date" id="fechaFin">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="trabajoActual">
+                                        <label for="trabajoActual" class="checkbox-label">Trabajo actual</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="descripcion">Descripcion:</label>
+                                <textarea id="descripcion" rows="3" placeholder="Describe tus responsabilidades y logros..."></textarea>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button type="submit" class="btn-primary" id="saveExpBtn">Guardar Experiencia</button>
+                                <button type="button" class="btn-secondary" id="cancelExpBtn">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="experiences-list">
+                        <div class="list-header">
+                            <h3>Experiencias Registradas</h3>
+                            <button type="button" class="btn-success" id="addExpBtn">Agregar Experiencia</button>
+                        </div>
+                        <div id="experiencesList" class="experiences-container">
+                            <p class="no-data">No hay experiencias registradas</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seccion de Educacion -->
+                <div class="education-section section-content" id="educationSection" style="display:none;">
+                    <h2>Educacion Academica</h2>
+                    
+                    <div class="education-form" id="educationForm" style="display:none;">
+                        <h3 id="educationFormTitle">Nueva Educacion</h3>
+                        <form id="eduForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="institucion">Institucion:</label>
+                                    <input type="text" id="institucion" required placeholder="Universidad, Colegio, Instituto...">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="titulo">Titulo/Grado:</label>
+                                    <input type="text" id="titulo" required placeholder="Ingenieria, Licenciatura, Tecnico...">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fechaInicioEdu">Fecha Inicio:</label>
+                                    <input type="date" id="fechaInicioEdu">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="fechaFinEdu">Fecha Fin:</label>
+                                    <input type="date" id="fechaFinEdu">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="estudiosActuales">
+                                        <label for="estudiosActuales" class="checkbox-label">Estudios en curso</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button type="submit" class="btn-primary" id="saveEduBtn">Guardar Educacion</button>
+                                <button type="button" class="btn-secondary" id="cancelEduBtn">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="education-list">
+                        <div class="list-header">
+                            <h3>Educacion Registrada</h3>
+                            <button type="button" class="btn-success" id="addEduBtn">Agregar Educacion</button>
+                        </div>
+                        <div id="educationList" class="education-container">
+                            <p class="no-data">No hay educacion registrada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-section">
+                <h2>Vista Previa</h2>
+                <div id="preview" class="cv-preview">
+                    <p>Los datos aparecera aqui...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
